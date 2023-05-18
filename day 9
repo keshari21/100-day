@@ -1,0 +1,23 @@
+bool isValid(char * s){
+    if(strlen(s) == 0) return true;
+    char stack[strlen(s)];
+    int top = -1;
+    int len = strlen(s);
+    for(int i = 0; i < len; i++){
+        char c = s[i];
+        if(c == '(' || c == '{' || c == '['){
+            stack[++top] = c;
+            continue;
+        }
+        if(top == -1) return false;
+        if(c == ')' && stack[top--] == '('){
+            continue;
+        }else if(c == ']' && stack[top--] == '['){
+            continue;
+        }else if(c == '}' && stack[top--] == '{'){
+            continue;
+        }else return false;
+    }
+    return top == -1;
+
+}
