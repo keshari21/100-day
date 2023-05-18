@@ -1,0 +1,22 @@
+char * longestCommonPrefix(char ** strs, int strsSize){
+     if (strs == NULL || strsSize == 0) {
+        char* empty = "";
+        return empty;
+    }
+    
+    for (int preLen = 0; preLen < strlen(strs[0]); preLen++) {
+        char charPrefix = strs[0][preLen];
+        
+        for (int i = 1; i < strsSize; i++) {
+            if (preLen >= strlen(strs[i]) || strs[i][preLen] != charPrefix) {
+                char* result = malloc(preLen + 1);
+                strncpy(result, strs[i], preLen);
+                result[preLen] = '\0';
+                return result;
+            }
+        }
+    }
+    
+    return strs[0];
+
+}
